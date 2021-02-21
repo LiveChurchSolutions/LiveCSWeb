@@ -11,6 +11,8 @@ export class EnvironmentHelper {
     static SubUrl = "";
 
     static GoogleAnalyticsTag = "";
+    static StripePK = "";
+
 
     static init = () => {
         switch (process.env.REACT_APP_STAGE) {
@@ -36,6 +38,7 @@ export class EnvironmentHelper {
         EnvironmentHelper.AppUrl = process.env.REACT_APP_APP_URL || ""
         EnvironmentHelper.StreamingLiveApi = process.env.REACT_APP_STREAMINGLIVE_API || "";
         EnvironmentHelper.SubUrl = process.env.REACT_APP_SUB_URL;
+        EnvironmentHelper.StripePK = process.env.REACT_APP_STRIPE_PK;
     }
 
     //NOTE: None of these values are secret.
@@ -49,6 +52,7 @@ export class EnvironmentHelper {
         EnvironmentHelper.AppUrl = "https://app.staging.chums.org"
         EnvironmentHelper.StreamingLiveApi = "https://api.staging.streaminglive.church";
         EnvironmentHelper.SubUrl = "https://{key}.staging.streaminglive.church";
+        EnvironmentHelper.StripePK = "pk_test_IsC6UPM4P5EZ6KAEorHwEMvU00M6ioef1d";
     }
 
     //NOTE: None of these values are secret.
@@ -62,6 +66,7 @@ export class EnvironmentHelper {
         EnvironmentHelper.AppUrl = "https://app.chums.org"
         EnvironmentHelper.StreamingLiveApi = "https://api.streaminglive.church";
         EnvironmentHelper.SubUrl = "https://{key}.streaminglive.church";
+        EnvironmentHelper.StripePK = "pk_live_Ny9Jk8nPW2lRf7NTjTg8QiBt00D4bjTh3y";
     }
 
 }

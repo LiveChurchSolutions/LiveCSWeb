@@ -3,6 +3,9 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { Row, Col, FormGroup, FormLabel, FormControl } from "react-bootstrap";
 import { ErrorMessages, InputBox } from "../appBase/components";
 import { ApiHelper, EnvironmentHelper } from "../helpers";
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe(EnvironmentHelper.StripePK);
 
 export const Donate: React.FC = () => {
 
@@ -15,16 +18,19 @@ export const Donate: React.FC = () => {
     const [amount, setAmount] = React.useState("");
 
     const stripe = useStripe();
-    const elements = useElements();
+    //const elements = useElements();
 
     const handleDonate = async () => {
         const data = {
             churchId: "1",
-            successUrl: "/partner",
-            cancelUrl: "/partner",
-            amount: amount
+            successUrl: window.location.href,
+            cancelUrl: window.location.href,
+            amount: 50
         }
-        alert(ApiHelper.postAnonymous("/checkout", data, "GivingApi"));
+        ApiHelper.postAnonymous("/donate/checkout", data, "GivingApi").then(resp => {
+            stripe.redirectToCheckout({ sessionId: resp.sessionId });
+        });
+        /*
         const cardElement = elements.getElement(CardElement);
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
@@ -34,7 +40,7 @@ export const Donate: React.FC = () => {
         if (error) setErrors([error.message]);
         else {
             console.log(paymentMethod);
-        }
+        }*/
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +56,7 @@ export const Donate: React.FC = () => {
 
 
     return (
-        <>
+        <Elements stripe={stripePromise}>
             <ErrorMessages errors={errors} />
             <InputBox headerIcon="" headerText="Donate with Card" saveFunction={handleDonate} saveText="Donate" >
                 <FormGroup>
@@ -95,6 +101,6 @@ export const Donate: React.FC = () => {
                 </FormGroup>
 
             </InputBox>
-        </>
+        </Elements>
     );
 }
