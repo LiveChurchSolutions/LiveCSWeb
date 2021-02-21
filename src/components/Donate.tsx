@@ -2,6 +2,7 @@ import React from "react"
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { Row, Col, FormGroup, FormLabel, FormControl } from "react-bootstrap";
 import { ErrorMessages, InputBox } from "../appBase/components";
+import { ApiHelper, EnvironmentHelper } from "../helpers";
 
 export const Donate: React.FC = () => {
 
@@ -17,6 +18,13 @@ export const Donate: React.FC = () => {
     const elements = useElements();
 
     const handleDonate = async () => {
+        const data = {
+            churchId: "1",
+            successUrl: "/partner",
+            cancelUrl: "/partner",
+            amount: amount
+        }
+        alert(ApiHelper.postAnonymous("/checkout", data, "GivingApi"));
         const cardElement = elements.getElement(CardElement);
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
