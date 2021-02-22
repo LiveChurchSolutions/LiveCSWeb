@@ -7,12 +7,13 @@ import { loadStripe } from '@stripe/stripe-js';
 
 export const DonateRedirect: React.FC = () => {
     const [amount, setAmount] = React.useState(25);
-    const stripePromise = loadStripe(EnvironmentHelper.StripePK);
 
     const handleDonate = async () => {
+        //const gateways = ApiHelper.getAnonymous("/gateways", "GivingApi");
+        const stripePromise = loadStripe(EnvironmentHelper.StripePK);
         const stripe = await stripePromise;
         const data = {
-            churchId: "1",
+            churchId: EnvironmentHelper.ChurchId,
             successUrl: window.location.origin.toString() + "/thankyou",
             cancelUrl: window.location.href,
             amount: amount

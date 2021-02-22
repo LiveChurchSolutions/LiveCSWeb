@@ -6,6 +6,7 @@ export class EnvironmentHelper {
     private static GivingApi = "";
     private static MembershipApi = "";
     static AppUrl = "";
+    static ChurchId = "";
 
     private static StreamingLiveApi = "";
     static SubUrl = "";
@@ -39,6 +40,7 @@ export class EnvironmentHelper {
         EnvironmentHelper.StreamingLiveApi = process.env.REACT_APP_STREAMINGLIVE_API || "";
         EnvironmentHelper.SubUrl = process.env.REACT_APP_SUB_URL;
         EnvironmentHelper.StripePK = process.env.REACT_APP_STRIPE_PK;
+        EnvironmentHelper.ChurchId = process.env.REACT_APP_CHURCH_ID;
     }
 
     //NOTE: None of these values are secret.
@@ -53,6 +55,7 @@ export class EnvironmentHelper {
         EnvironmentHelper.StreamingLiveApi = "https://api.staging.streaminglive.church";
         EnvironmentHelper.SubUrl = "https://{key}.staging.streaminglive.church";
         EnvironmentHelper.StripePK = "pk_test_IsC6UPM4P5EZ6KAEorHwEMvU00M6ioef1d";
+        EnvironmentHelper.ChurchId = "1";
     }
 
     //NOTE: None of these values are secret.
@@ -67,6 +70,7 @@ export class EnvironmentHelper {
         EnvironmentHelper.StreamingLiveApi = "https://api.streaminglive.church";
         EnvironmentHelper.SubUrl = "https://{key}.streaminglive.church";
         EnvironmentHelper.StripePK = "pk_live_Ny9Jk8nPW2lRf7NTjTg8QiBt00D4bjTh3y";
+        EnvironmentHelper.ChurchId = "40";
     }
 
 }
