@@ -1,4 +1,4 @@
-import { ApiHelper } from "../appBase/helpers";
+import { ApiHelper } from "../appBase/helpers"
 
 export class EnvironmentHelper {
     private static AccessApi = "";

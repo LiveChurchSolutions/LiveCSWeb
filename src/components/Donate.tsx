@@ -27,7 +27,7 @@ export const Donate: React.FC = () => {
             cancelUrl: window.location.href,
             amount: 50
         }
-        ApiHelper.postAnonymous("/donate/checkout", data, "GivingApi").then(resp => {
+        ApiHelper.postAnonymous("/donate/checkout", data, "GivingApi").then((resp: any) => {
             stripe.redirectToCheckout({ sessionId: resp.sessionId });
         });
         /*

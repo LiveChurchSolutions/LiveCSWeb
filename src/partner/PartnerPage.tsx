@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer, Header, EnvironmentHelper } from "../components"
+import { Footer, Header } from "../components"
 import { Container, Row, Col } from "react-bootstrap";
 import { DonateRedirect } from "../components/DonateRedirect";
 

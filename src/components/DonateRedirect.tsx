@@ -9,7 +9,9 @@ export const DonateRedirect: React.FC = () => {
     const [amount, setAmount] = React.useState(25);
 
     const handleDonate = async () => {
-        //const gateways = ApiHelper.getAnonymous("/gateways", "GivingApi");
+        //const gateways = await ApiHelper.getAnonymous("/gateways", "GivingApi");
+        //if (gateways.length > 0) {
+        //const stripePromise = loadStripe(gateways[0].primaryKey);
         const stripePromise = loadStripe(EnvironmentHelper.StripePK);
         const stripe = await stripePromise;
         const data = {
@@ -18,9 +20,10 @@ export const DonateRedirect: React.FC = () => {
             cancelUrl: window.location.href,
             amount: amount
         }
-        ApiHelper.postAnonymous("/donate/checkout", data, "GivingApi").then(resp => {
+        ApiHelper.postAnonymous("/donate/checkout", data, "GivingApi").then((resp: any) => {
             stripe.redirectToCheckout({ sessionId: resp.sessionId });
         });
+        //}
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
