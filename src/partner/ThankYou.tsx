@@ -1,8 +1,22 @@
 import React from "react";
 import { Footer, Header } from "../components"
 import { Container } from "react-bootstrap";
+import { ApiHelper } from "../appBase/helpers";
 
-export const ThankYou = () => {
+export const ThankYou: React.FC = (props: any) => {
+
+    const logSession = () => {
+        let search = new URLSearchParams(props.location.search);
+        var sessionId = search.get("sessionId");
+        if (sessionId !== null) {
+            const data = { sessionId: sessionId }
+            ApiHelper.postAnonymous("/donate/log", data, "GivingApi");
+        }
+    }
+
+    React.useEffect(logSession, []);
+
+
     return (
         <>
             <Header />
