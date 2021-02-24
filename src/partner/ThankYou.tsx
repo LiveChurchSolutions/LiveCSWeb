@@ -1,7 +1,7 @@
 import React from "react";
 import { Footer, Header } from "../components"
 import { Container } from "react-bootstrap";
-import { ApiHelper } from "../appBase/helpers";
+import { ApiHelper, EnvironmentHelper } from "../helpers";
 
 export const ThankYou: React.FC = (props: any) => {
 
@@ -9,7 +9,7 @@ export const ThankYou: React.FC = (props: any) => {
         let search = new URLSearchParams(props.location.search);
         var sessionId = search.get("sessionId");
         if (sessionId !== null) {
-            const data = { sessionId: sessionId }
+            const data = { sessionId: sessionId, churchId: EnvironmentHelper.ChurchId }
             ApiHelper.postAnonymous("/donate/log", data, "GivingApi");
         }
     }
