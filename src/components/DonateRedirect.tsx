@@ -25,12 +25,7 @@ export const DonateRedirect: React.FC = () => {
             churchId: EnvironmentHelper.ChurchId,
             successUrl: window.location.origin.toString() + "/thankyou",
             cancelUrl: window.location.href,
-            amount: amount,
-            name: name,
-            address: address,
-            city: city,
-            state: state,
-            zip: zip
+            amount: amount
         }
         ApiHelper.postAnonymous("/donate/checkout", data, "GivingApi").then((resp: any) => {
             stripe.redirectToCheckout({ sessionId: resp.sessionId });
@@ -41,11 +36,6 @@ export const DonateRedirect: React.FC = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         switch (e.target.name) {
-            case "name": setName(e.target.value); break;
-            case "address": setAddress(e.target.value); break;
-            case "city": setCity(e.target.value); break;
-            case "state": setState(e.target.value); break;
-            case "zip": setZip(e.target.value); break;
             case "amount": setAmount(parseInt(e.target.value, 0)); break;
         }
     }
@@ -54,31 +44,6 @@ export const DonateRedirect: React.FC = () => {
     return (
         <>
             <InputBox headerIcon="" headerText="Donate with Card" saveFunction={handleDonate} saveText="Donate" >
-
-                <FormGroup>
-                    <FormControl name="name" type="text" value={name} onChange={handleChange} placeholder="Name" />
-                </FormGroup>
-                <FormGroup>
-                    <FormControl name="address" type="text" value={address} onChange={handleChange} placeholder="Address" />
-                </FormGroup>
-
-                <Row>
-                    <Col xl={6}>
-                        <FormGroup>
-                            <FormControl name="city" type="text" value={city} onChange={handleChange} placeholder="City" />
-                        </FormGroup>
-                    </Col>
-                    <Col xl={3}>
-                        <FormGroup>
-                            <FormControl name="state" type="text" value={state} onChange={handleChange} placeholder="State" />
-                        </FormGroup>
-                    </Col>
-                    <Col xl={3}>
-                        <FormGroup>
-                            <FormControl name="zip" type="text" value={zip} onChange={handleChange} placeholder="Zip" />
-                        </FormGroup>
-                    </Col>
-                </Row>
                 <FormGroup>
                     <InputGroup>
                         <InputGroup.Prepend><InputGroup.Text>$</InputGroup.Text></InputGroup.Prepend>
