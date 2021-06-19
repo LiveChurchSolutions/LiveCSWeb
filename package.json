@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:only": "eslint --ext ts,tsx",
+    "lint:only": "eslint --ext ts,tsx,js",
     "lint:fix": "npm run lint:only -- --fix",
     "predeploy-prod": "export REACT_APP_STAGE=prod&& npm run build",
     "exec-deploy-prod": "aws s3 sync build/ s3://livecs-web",
