@@ -119,7 +119,7 @@ export const ChumsRegister: React.FC = () => {
           <div id="register"></div>
 
           <Row>
-            <Col lg={6} className="d-none d-lg-block"><img src="/images/home/register.png" alt="register" className="img-fluid" /></Col>
+            <Col lg={6} className="d-none d-lg-block"><img src="/images/chums/register.png" alt="register" className="img-fluid" /></Col>
             <Col lg={6}>
               <div className="title"><span>Join CHUMS</span></div>
               <h2>Register for a Free Account</h2>
