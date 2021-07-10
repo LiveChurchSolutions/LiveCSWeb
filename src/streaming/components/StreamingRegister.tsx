@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ApiHelper, RegisterInterface, RoleInterface, LoginResponseInterface, RolePermissionInterface, ErrorMessages, ChurchInterface, UserInterface, EnvironmentHelper, PersonInterface } from ".";
+import ReactGA from "react-ga";
 import { Row, Col } from "react-bootstrap";
 
 export const StreamingRegister: React.FC = () => {
@@ -43,6 +44,7 @@ export const StreamingRegister: React.FC = () => {
     if (await validate()) {
       btn.innerHTML = "Registering. Please wait..."
       btn.setAttribute("disabled", "disabled");
+      ReactGA.event({ category: "Streaming", action: "Register" });
       // check if user already exist and if so, return user's associated churches
       const verifyResponse = await ApiHelper.postAnonymous("/users/verifyCredentials", { email, password }, "AccessApi");
       if (verifyResponse.errors !== undefined || verifyResponse.churches !== undefined) {
